@@ -13,7 +13,7 @@ optdepends=('instantclient-basic: support for oracle databases'
             'postgresql-libs: support for postgresql databases'
             'sqlite3: support for sqlite databases'
             'unixodbc: support for ODBC databases')
-source=("http://sourceforge.net/projects/soci/files/soci/$pkgname-$pkgver/$pkgname-$pkgver.zip/download")
+source=("http://downloads.sourceforge.net/project/soci/soci/${pkgname}-${pkgver}/${pkgname}-${pkgver}.zip")
 md5sums=('6ffac090b996bc34aedf4a29adf4595c')
 
 build() {
