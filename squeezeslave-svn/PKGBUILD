@@ -1,0 +1,45 @@
+pkgname=squeezeslave-svn
+pkgver=286
+pkgrel=1
+pkgdesc="Light weight streaming audio player for Logitech's Squeezebox audio server (svn trunk)"
+arch=(i686 x86_64)
+url="http://wiki.slimdevices.com/index.php/SqueezeSlave"
+license=('GPL')
+depends=('lirc-utils')
+optdepends=()
+makedepends=('alsa-lib' 'lirc-utils' 'ncurses' 'subversion')
+provides=('squeezeslave')
+conflicts=('squeezeslave')
+source=()
+md5sums=()
+
+_svntrunk="http://squeezeslave.googlecode.com/svn/squeezeslave/trunk/squeezeslave"
+_svnmod="squeezeslave-trunk"
+
+build() {
+    cd ${srcdir}
+
+    if [[ -d ${_svnmod}/.svn ]]; then
+        (cd ${_svnmod} && svn up -r $pkgver)
+    else
+        svn co ${_svntrunk} --config-dir ./ -r ${pkgver} ${_svnmod}
+    fi
+
+    msg "SVN checkout done or server timeout"
+    msg "Starting make..."
+
+    rm -rf ${srcdir}/${_svnmod}-build
+    cp -r ${srcdir}/${_svnmod} ${srcdir}/${_svnmod}-build
+    cd ${srcdir}/${_svnmod}-build
+
+    if [[ "${CARCH}" == "x86_64" ]]; then
+        make -f makefile.linux26-i64-alsa-display || return 1
+    elif [[ "${CARCH}" == "i686" ]]; then
+        make -f makefile.linux26-alsa-display || return 1
+    else
+        echo "Unknown architecture: ${CARCH}"
+        return 1
+    fi
+
+    install -D ${srcdir}/${_svnmod}-build/bin/squeezeslave ${pkgdir}/usr/bin/squeezeslave
+}
