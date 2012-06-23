@@ -1,6 +1,6 @@
 # Maintainer: Mika Fischer <mika.fischer@zoopnet.de>
 pkgname=squeezeslave-svn
-pkgver=305
+pkgver=350
 pkgrel=1
 pkgdesc="Light weight streaming audio player for Logitech's Squeezebox audio server (svn trunk)"
 arch=('i686' 'x86_64')
@@ -8,6 +8,7 @@ url="http://wiki.slimdevices.com/index.php/SqueezeSlave"
 license=('GPL')
 depends=('lirc-utils')
 makedepends=('alsa-lib' 'lirc-utils' 'ncurses' 'patch' 'subversion')
+options=('!makeflags')
 provides=('squeezeslave')
 conflicts=('squeezeslave')
 
