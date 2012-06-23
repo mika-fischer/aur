@@ -1,0 +1,23 @@
+diff -ru pylms-1.0.orig/pylms/tests.py pylms-1.0/pylms/tests.py
+--- pylms-1.0.orig/pylms/tests.py	2012-06-23 15:21:57.392003064 +0200
++++ pylms-1.0/pylms/tests.py	2012-06-23 15:26:16.563440793 +0200
+@@ -1,15 +1,16 @@
++from __future__ import print_function
+ from pylms import server
+ 
+ s = server.Server("10.0.2.10")
+ s.connect()
+ 
+-print s.get_players()
++print(s.get_players())
+ 
+ p = s.get_player("Lounge")
+ p.set_volume(10)
+ 
+ r = s.request("songinfo 0 100 track_id:94")
+-print r
++print(r)
+ 
+ r = s.request("trackstat getrating 1019")
+-print r
++print(r)
