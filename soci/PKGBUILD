@@ -1,7 +1,7 @@
 # Maintainer: Mika Fischer <mika.fischer@zoopnet.de>
 pkgname=soci
 pkgver=3.2.0
-pkgrel=5
+pkgrel=1
 pkgdesc="Database access library for C++"
 arch=('i686' 'x86_64')
 url="http://soci.sf.net"
